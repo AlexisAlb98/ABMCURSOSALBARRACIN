@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ABMCURSOSALBARRACIN.Models.Curso>
+
+@{
+    ViewData["Title"] = "Pagina Princial";
+}
+
+<br />
+<br />
+
+<h1>Cursos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profesor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadAlumnos)
+            </th>
+            <th>
+                <a>Agregar/Eliminar</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profesor)
+            </td>
+                <td>
+                    <div class="d-flex ">
+                        <div class="mx-2">
+                            <span>@Html.DisplayFor(modelItem => item.CantidadAlumnos)</span>
+                        </div>
+                        
+                        
+                    </div>
+                </td>
+
+                <td>
+					<div class="btn-group-vertical ml-2" role="group">
+						<a class="btn btn-success btn-sm" asp-action="AgregarAlumno" asp-route-id="@item.IdCurso">Agregar +1</a>
+						<a class="btn btn-warning btn-sm" asp-action="EliminarAlumno" asp-route-id="@item.IdCurso">Eliminar -1</a>
+					</div>
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Horario)
+            </td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.IdCurso">Editar</a>
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.IdCurso">Ver detalles</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdCurso">Eliminar</a>
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
